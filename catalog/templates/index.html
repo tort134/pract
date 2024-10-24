@@ -17,5 +17,12 @@
         <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
         <li><strong>Authors:</strong> {{ num_authors }}</li>
     </ul>
+    <form>
+        <label>Search World</label>
+        <input type="text" id="search_word" name="search_word" value="{{ search_word }}">
+        <button type="submit">Search</button>
+    </form>
+    <p>Total book containig "{{ search_word }}": {{ book_count }}</p>
+
     <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
 {% endblock %}

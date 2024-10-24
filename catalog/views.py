@@ -24,10 +24,26 @@ def index(request):
     num_authors=Author.objects.count()
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
+
+    search_word = request.GET.get('search_word', '')
+    search_word_lower = search_word.lower()
+
+    if search_word:
+        book_count = Book.objects.filter(title__icontains=search_word_lower).count()
+    else:
+        book_count = 0
+
     return render(
         request,
 'index.html',context=
-{'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors, 'num_visits':num_visits}
+{'num_books':num_books,
+ 'num_instances':num_instances,
+ 'num_instances_available':num_instances_available,
+ 'num_authors':num_authors,
+ 'num_visits':num_visits,
+ 'book_count':book_count,
+ 'search_word':search_word,
+ }
 )
 
 class BookListView(generic.ListView):
