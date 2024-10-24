@@ -5,7 +5,7 @@
 <ul>
 {% for bookinst in bookinstance_list %}
 <li class="{% if bookinst.is_overdue %}text-danger{% endif%}">
-<a href="{% url 'book-detail' bookinst.book.pk %}">
+    <a href="{% url 'book-detail' bookinst.book.pk %}">
 </li>
     {% endfor %}
 </ul>

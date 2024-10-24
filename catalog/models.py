@@ -11,6 +11,7 @@ class Author(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
 
+
     def get_absolute_url(self):
 
         return reverse('author-detail', args=[str(self.id)])
@@ -47,7 +48,7 @@ class BookInstance(models.Model):
 
     def __str__(self):
 
-        return '%s (%s)' % (self.id, self.book.title)
+        return f'{self.book.title} (Id: {self.id}) - status: {self.get_status_display()} Due back: {self.due_back if self.due_back else "No one date"}'
 
 class Genre(models.Model):
     name = models.CharField(max_length=200, help_text="Enter a book genre (e.g Science Fiction, French Poetry etc.)")
@@ -72,6 +73,5 @@ class Book(models.Model):
 
 def display_genre(self):
 
-    return ', '.join([ genre.name for genre in self.genre.all()
-[:3] ])
+    return ', '.join([ genre.name for genre in self.genre.all() [:3] ])
 display_genre.short_description = 'Genre'
