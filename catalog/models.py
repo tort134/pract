@@ -1,3 +1,5 @@
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db import models
 from django.urls import reverse
 import uuid
@@ -73,4 +75,5 @@ class Book(models.Model):
 def display_genre(self):
 
     return ', '.join([ genre.name for genre in self.genre.all() [:3] ])
+
 display_genre.short_description = 'Genre'
