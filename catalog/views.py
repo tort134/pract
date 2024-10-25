@@ -13,7 +13,6 @@ from .forms import RenewBookForm
 class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
     model = BookInstance
     template_name ='catalog/bookinstance_list_borrowed_user.html'
-    paginate_by = 10
     def get_queryset(self):
         return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact = 'o').order_by('due_back')
 
@@ -48,14 +47,17 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 10
+    paginate_by = 2
 
-class BookListView(generic.ListView):
-    model = Book
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 2
 
 class BookDetailView(generic.DetailView):
     model = Book
 
+class AuthorDetailView(generic.DetailView):
+    model = Author
 
 @permission_required('catalog.can_mark_returned')
 def renew_book_librarian(request, pk):
