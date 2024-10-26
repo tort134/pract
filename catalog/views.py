@@ -1,3 +1,5 @@
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.migrations import CreateModel
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -5,7 +7,10 @@ from django.contrib.auth.decorators import permission_required
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.urls import reverse_lazy
 import datetime
+
+from django.views.generic import UpdateView
 
 from .models import Book, Author, BookInstance
 from .forms import RenewBookForm
@@ -67,6 +72,19 @@ class AuthorListView(generic.ListView):
 
 class AuthorDetailView(generic.DetailView):
     model = Author
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = '__all__'
+    initial={'date_of_death':'12/10/2016',}
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = ['first_name','last_name','date_of_birth','date_of_death']
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
 
 @permission_required('catalog.can_mark_returned')
 def renew_book_librarian(request, pk):
