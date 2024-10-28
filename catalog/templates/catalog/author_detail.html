@@ -18,7 +18,7 @@
 {% endfor %}
 </dl>
 
-
-
-
+{% if not author.book_set.all and perms.catalog.delete_author %}
+    <a href="{% url 'author-delete' author.id %}">Delete author</a>
+{% endif %}
 {% endblock %}

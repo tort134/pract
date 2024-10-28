@@ -92,7 +92,7 @@ class BookCreate(CreateView):
 
 class BookUpdate(UpdateView):
     model = Book
-    fields = ['title','author','summary','isbn', 'genre']
+    fields = ['title','author','summary','isbn','genre']
 
 class BookDelete(DeleteView):
     model = Book

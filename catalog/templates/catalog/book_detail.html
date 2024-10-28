@@ -9,7 +9,6 @@
     {% endif %}
     <p><strong>Summary:</strong> {{ book.summary }}</p>
     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-    <p><strong>Language:</strong> {{ book.language }}</p>
     <p><strong>Genre:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
     <div style="margin-left:20px; margin-top:20px">
 
@@ -23,11 +22,13 @@
 {% endif %}">{{ copy.get_status_display }}</p>
 
 {% if copy.status != 'a' %}
-        <p><strong>Due to be returned:
-</strong> {{copy.due_back}}</p>{% endif %}
+<p><strong>Due to be returned:</strong> {{copy.due_back}}</p>{% endif %}
 <p><strong>Imprint:</strong> {{copy.imprint}}</p>
 <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
 
 {% endfor %}
+   {% if not author.book_set.all and perms.catalog.delete_author %}
+        <a href="{% url 'book-delete' book.id %}">Delete book</a>
+   {% endif %}
 </div>
 {% endblock %}
