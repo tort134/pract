@@ -2,8 +2,11 @@
 {% block content %}
 
 <h1>Title: {{ book.title }}</h1>
-
+    {% if author %}
     <p><strong>Author:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p>
+    {% else %}
+    <p><strong>Author:</strong>No author</p>
+    {% endif %}
     <p><strong>Summary:</strong> {{ book.summary }}</p>
     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
     <p><strong>Language:</strong> {{ book.language }}</p>
