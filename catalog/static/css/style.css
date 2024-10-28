@@ -1,5 +1,15 @@
-.sidebar-nav {
+.sidebar-nav{
     margin-top: 20px;
     padding: 0;
     list-style: none;
+}
+
+.author_detail_space{
+    margin-left:20px;
+    margin-top:20px;
+}
+
+.book_detail_space{
+    margin-left:20px;
+    margin-top:20px;
 }

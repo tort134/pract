@@ -10,7 +10,7 @@
     <p><strong>Summary:</strong> {{ book.summary }}</p>
     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
     <p><strong>Genre:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-    <div style="margin-left:20px; margin-top:20px">
+    <div class="book_detail_space">
 
     <h4>Copies</h4>
 
