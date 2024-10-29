@@ -1,7 +1,8 @@
+from distutils.command.upload import upload
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.db.migrations import CreateModel
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from django.views import generic
@@ -92,7 +93,7 @@ class BookCreate(CreateView):
 
 class BookUpdate(UpdateView):
     model = Book
-    fields = ['title','author','summary','isbn','genre']
+    fields = ['title','author','summary','isbn','genre','cover']
 
 class BookDelete(DeleteView):
     model = Book

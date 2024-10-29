@@ -10,6 +10,7 @@
     <p><strong>Summary:</strong> {{ book.summary }}</p>
     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
     <p><strong>Genre:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <img class="book_cover" src="{{ book.cover.url }}" alt="book cover">
     <div class="book_detail_space">
 
     <h4>Copies</h4>
